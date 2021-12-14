@@ -5,12 +5,13 @@ const getUniqSongs = async () => {
   const uniqSongs = [];
 
   songs.forEach((song) => {
-    const existIndex = uniqSongs.findIndex((s) => s.id === song.id);
-    if (existIndex === -1) {
-      song.count = 1;
-      uniqSongs.push(song);
+    const existSong = uniqSongs.find((s) => s.id === song.id);
+    if (!existSong) {
+      existSong.count = 1;
+      uniqSongs.push(existSong);
     } else {
-      song.count += 1;
+      existSong.count += 1;
+      songs[uniqSongs.find((s) => s.id === existSong.id)] = existSong;
     }
   });
   return uniqSongs;
