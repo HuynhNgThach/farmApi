@@ -5,7 +5,7 @@ const getUniqSongs = async () => {
   const uniqSongs = [];
 
   songs.forEach((song) => {
-    const existSong = uniqSongs.find((s) => s.id === song.id);
+    let existSong = uniqSongs.find((s) => s.id === song.id);
     if (!existSong) {
       existSong = song;
       existSong.count = 1;
