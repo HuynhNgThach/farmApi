@@ -7,6 +7,7 @@ const getUniqSongs = async () => {
   songs.forEach((song) => {
     const existSong = uniqSongs.find((s) => s.id === song.id);
     if (!existSong) {
+      existSong = song;
       existSong.count = 1;
       uniqSongs.push(existSong);
     } else {
@@ -14,7 +15,7 @@ const getUniqSongs = async () => {
       songs[uniqSongs.find((s) => s.id === existSong.id)] = existSong;
     }
   });
-  return uniqSongs;
+  return uniqSongs.sort((a, b) => a.count - b.count);
 };
 
 module.exports = {
